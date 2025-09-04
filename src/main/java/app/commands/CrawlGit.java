@@ -11,7 +11,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import picocli.CommandLine;
 
-import java.nio.file.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.*;
@@ -27,8 +28,7 @@ public class CrawlGit implements Callable<Integer> {
     @CommandLine.Option(names="--log-every", defaultValue = "10", description="Log progress every N repos")
     int logEvery;
 
-    @CommandLine.Option(names="--git-cache-dir",
-            description="Directory for temporary clones (default: <out.dir>/.cache/git)")
+    @CommandLine.Option(names="--git-cache-dir", description="Directory for temporary clones (default: <out.dir>/.cache/git)")
     Path gitCacheDir;
 
     @CommandLine.Option(names="--keep-clone", description="Keep local clone after processing (default: delete)")
@@ -37,17 +37,16 @@ public class CrawlGit implements Callable<Integer> {
     @Override
     public Integer call() throws Exception {
         final var cfg = Config.load();
-
-        // REST only for listing repos; all history handled by git
         final var http = new Http(cfg);
         final var gh = new GitHubClient(cfg, http);
         final var reposApi = new Repos(gh);
         final var gitHistory = new HistoryGit(cfg);
 
         final var orgs = readOrgs(orgsFile);
-        final Path cacheRoot = (gitCacheDir != null)
-                ? gitCacheDir
-                : Path.of(cfg.outDir(), ".cache", "git");
+        final Path cacheRoot = (gitCacheDir != null) ? gitCacheDir : Path.of(cfg.outDir(), ".cache", "git");
+
+        // Limit concurrent clones (network bottleneck) — let history walk parallelize freely per repo
+        final var cloneSlots = new Semaphore(Math.max(4, Math.min(cfg.maxWorkers(), 8)));
 
         for (String org : orgs) {
             long t0 = System.currentTimeMillis();
@@ -62,7 +61,6 @@ public class CrawlGit implements Callable<Integer> {
             int total = targets.size();
             log.info("Org {} → {} repos to process ({} skipped)", org, total, repoList.size() - total);
 
-//            ExecutorService pool = Executors.newFixedThreadPool(cfg.maxWorkers());
             ExecutorService pool = Executors.newVirtualThreadPerTaskExecutor();
             CompletionService<Void> ecs = new ExecutorCompletionService<>(pool);
             int submitted = 0;
@@ -70,23 +68,22 @@ public class CrawlGit implements Callable<Integer> {
             for (JsonNode r : targets) {
                 final String repo = r.path("name").asText();
                 final String cloneUrl = r.path("clone_url").asText();
+                final String defaultBranch = r.path("default_branch").asText("main");
                 final Path local = cacheRoot.resolve(org).resolve(repo);
 
                 ecs.submit(() -> {
                     try {
-                        // run the git-based collection
-                        gitHistory.collectRepo(org, repo, cloneUrl, local);
+                        cloneSlots.acquire();
+                        try {
+                            gitHistory.collectRepo(org, repo, cloneUrl, local, defaultBranch);
+                        } finally {
+                            cloneSlots.release();
+                        }
                     } catch (Exception ex) {
                         log.warn("Git collect failed for {}/{}: {}", org, repo, ex.toString());
                     } finally {
-                        // cleanup clone to save disk, unless user asked to keep it
-                        if (!keepClone) {
-                            try {
-                                deleteDirectoryQuietly(local);
-                            } catch (Exception delEx) {
-                                log.warn("Failed to delete clone for {}/{} at {}: {}", org, repo, local, delEx.toString());
-                            }
-                        }
+                        try { markRepoDone(cfg, org, repo); } catch (Exception ignore) {}
+//                        if (!keepClone) deleteDirectoryQuietly(local);
                     }
                     return null;
                 });
@@ -103,18 +100,23 @@ public class CrawlGit implements Callable<Integer> {
 
             long secs = (System.currentTimeMillis() - t0) / 1000;
             log.info("Org {} → done in {}s", org, secs);
+
+            try {
+                app.logic.Metrics.writeOrgSummary(cfg, org);
+                var summaryPath = Path.of(cfg.outDir(), "metrics", "orgs", org + ".json");
+                log.info("Org {} → wrote metrics summary to {}", org, summaryPath.toAbsolutePath());
+            } catch (Exception e) {
+                log.warn("Failed writing metrics for {}: {}", org, e.toString());
+            }
         }
         return 0;
     }
 
     private static void deleteDirectoryQuietly(Path dir) {
         if (dir == null || !Files.exists(dir)) return;
-        // best effort recursive delete (close repos before calling this!)
         try (Stream<Path> walk = Files.walk(dir)) {
             walk.sorted((a, b) -> b.getNameCount() - a.getNameCount())
-                    .forEach(p -> {
-                        try { Files.deleteIfExists(p); } catch (Exception ignored) {}
-                    });
+                    .forEach(p -> { try { Files.deleteIfExists(p); } catch (Exception ignored) {} });
         } catch (Exception ignored) {}
     }
 
@@ -122,5 +124,13 @@ public class CrawlGit implements Callable<Integer> {
         var om = new ObjectMapper();
         var arr = om.readTree(Files.readAllBytes(p));
         return om.convertValue(arr, om.getTypeFactory().constructCollectionType(List.class, String.class));
+    }
+
+    private void markRepoDone(app.core.Config cfg, String org, String repo) {
+        try {
+            var done = java.nio.file.Path.of(cfg.outDir(), "index", org, repo, "repo.done");
+            java.nio.file.Files.createDirectories(done.getParent());
+            java.nio.file.Files.writeString(done, java.time.Instant.now().toString());
+        } catch (Exception ignore) {}
     }
 }
