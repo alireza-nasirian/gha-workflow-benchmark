@@ -14,9 +14,9 @@ public class Http {
     public Http(Config cfg) {
         this.cfg = cfg;
         this.client = new OkHttpClient.Builder()
-                .callTimeout(Duration.ofSeconds(60))
-                .connectTimeout(Duration.ofSeconds(20))
-                .readTimeout(Duration.ofSeconds(60))
+                .callTimeout(Duration.ofSeconds(cfg.httpCallTimeoutSeconds()))
+                .connectTimeout(Duration.ofSeconds(cfg.httpConnectTimeoutSeconds()))
+                .readTimeout(Duration.ofSeconds(cfg.httpReadTimeoutSeconds()))
                 .build();
     }
 
@@ -32,19 +32,19 @@ public class Http {
             Response resp = client.newCall(req).execute();
             if (resp.code() == 403 && resp.header("X-RateLimit-Remaining", "1").equals("0")) {
                 long reset = Long.parseLong(resp.header("X-RateLimit-Reset", "0"));
-                long waitMs = Math.max(0, (reset * 1000) - System.currentTimeMillis()) + 1000;
+                long waitMs = Math.max(0, (reset * 1000) - System.currentTimeMillis()) + cfg.httpRateLimitBufferMs();
                 log.warn("Primary rate limit hit. Sleeping {} ms", waitMs);
                 Thread.sleep(waitMs);
                 resp.close();
                 continue;
             }
             if (resp.code() == 403 && "true".equals(resp.header("X-RateLimit-Used"))) { // vague; fallback
-                Thread.sleep(1000L * attempt);
+                Thread.sleep(cfg.httpRetryBackoffBaseMs() * attempt);
                 resp.close();
                 continue;
             }
             if (resp.code() >= 500) {
-                Thread.sleep(500L * attempt);
+                Thread.sleep(cfg.httpRetryServerErrorBaseMs() * attempt);
                 resp.close();
                 continue;
             }

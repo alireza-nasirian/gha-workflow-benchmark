@@ -47,6 +47,7 @@ public class GitSupport {
                     .setBranch(branchRef)
                     .setNoTags()
                     .setCredentialsProvider(cp)
+                    .setTimeout(300)
                     .call();
 
         } catch (TransportException te) {
@@ -60,6 +61,7 @@ public class GitSupport {
                     .setBranch(branchRef)
                     .setNoTags()
                     .setCredentialsProvider(cp)
+                    .setTimeout(300)
                     .call();
         }
     }
