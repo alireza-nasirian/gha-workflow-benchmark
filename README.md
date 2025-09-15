@@ -162,7 +162,7 @@ data/
 The application automatically tunes JGit cache settings for optimal performance:
 
 - **PackedGit Limit**: 512 MB
-- **Window Size**: 1 MB  
+- **Window Size**: 1 MB
 - **Delta Base Cache**: 50 MB
 - **Open Files**: 256
 
@@ -229,6 +229,27 @@ The application uses Logback for comprehensive logging:
 - Place Git cache directory on fast storage (SSD)
 - Adjust worker count based on available CPU cores and network bandwidth
 - Monitor system resources during large collection jobs
+
+
+## Dataset
+
+The full collected workflows and commits for top 50 organizations (~1.1 GB) are archived and attached as a
+[Release asset](https://github.com/<your-username>/<your-repo>/releases).
+
+- **Archive:** `nx-dataset.7z`
+- **Checksum:** `nx-dataset.7z.sha256.txt`
+- **Contents:** Follows the data structure described above (`data/`).
+
+### How to use
+1. Download the archive from [Releases](https://github.com/alireza-nasirian/gha-workflow-benchmark/releases).
+2. Verify the checksum:
+   ```powershell
+   certutil -hashfile nx-dataset.7z SHA256
+   ```
+3. Extract with 7-Zip:
+   ```powershell
+   7z x nx-dataset.7z
+   ```
 
 ## Contributing
 
