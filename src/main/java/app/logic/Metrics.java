@@ -20,7 +20,7 @@ public class Metrics {
             return;
         }
 
-        int reposScanned = 0;
+        int reposScanned;
         int reposWithWf  = 0;
         int workflowsTotal = 0;
         int snapshotsTotal = 0;

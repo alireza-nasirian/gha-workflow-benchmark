@@ -39,12 +39,12 @@ public class Http {
                 continue;
             }
             if (resp.code() == 403 && "true".equals(resp.header("X-RateLimit-Used"))) { // vague; fallback
-                Thread.sleep(cfg.httpRetryBackoffBaseMs() * attempt);
+                Thread.sleep((long) cfg.httpRetryBackoffBaseMs() * attempt);
                 resp.close();
                 continue;
             }
             if (resp.code() >= 500) {
-                Thread.sleep(cfg.httpRetryServerErrorBaseMs() * attempt);
+                Thread.sleep((long) cfg.httpRetryServerErrorBaseMs() * attempt);
                 resp.close();
                 continue;
             }

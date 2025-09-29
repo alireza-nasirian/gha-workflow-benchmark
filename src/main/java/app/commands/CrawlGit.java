@@ -109,7 +109,7 @@ public class CrawlGit implements Callable<Integer> {
 
                 Callable<RepoResult> task = () -> {
                     log.info("Start {}/{}", org, repo);
-                    boolean hasWorkflows = false;
+                    boolean hasWorkflows;
                     try {
                         cloneSlots.acquire();
                         try {
@@ -192,14 +192,13 @@ public class CrawlGit implements Callable<Integer> {
 
             // 4) Per-org metrics (this run)
             try {
-                int scannedThisRun = total; // attempted after filters
-                double ratio = (scannedThisRun > 0)
-                        ? (reposWithWorkflows.get() * 1.0 / scannedThisRun)
+                double ratio = (total > 0)
+                        ? (reposWithWorkflows.get() * 1.0 / total)
                         : 0.0;
 
                 Map<String, Object> summary = new LinkedHashMap<>();
                 summary.put("org", org);
-                summary.put("repos_scanned", scannedThisRun);
+                summary.put("repos_scanned", total);
                 summary.put("repos_with_workflows", reposWithWorkflows.get());
                 summary.put("ratio", ratio);
                 summary.put("timeouts", timedOut.get());
@@ -245,26 +244,16 @@ public class CrawlGit implements Callable<Integer> {
     }
 
     // Small holders
-    private static final class RepoTicket {
-        final String org, repo;
-        final Instant startedAt;
-        RepoTicket(String org, String repo, Instant startedAt) {
-            this.org = org; this.repo = repo; this.startedAt = startedAt;
-        }
+        private record RepoTicket(String org, String repo, Instant startedAt) {
     }
-    private static final class RepoResult {
-        final String org, repo;
-        final boolean ok;
-        final boolean hasWorkflows;
-        final Throwable error;
-        private RepoResult(String org, String repo, boolean ok, boolean hasWorkflows, Throwable error) {
-            this.org = org; this.repo = repo; this.ok = ok; this.hasWorkflows = hasWorkflows; this.error = error;
-        }
+
+    private record RepoResult(String org, String repo, boolean ok, boolean hasWorkflows, Throwable error) {
         static RepoResult ok(String org, String repo, boolean hasWorkflows) {
-            return new RepoResult(org, repo, true, hasWorkflows, null);
-        }
+                return new RepoResult(org, repo, true, hasWorkflows, null);
+            }
+
         static RepoResult fail(String org, String repo, Throwable error) {
-            return new RepoResult(org, repo, false, false, error);
+                return new RepoResult(org, repo, false, false, error);
+            }
         }
-    }
 }

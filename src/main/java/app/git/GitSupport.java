@@ -3,7 +3,6 @@ package app.git;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.TransportException;
 import org.eclipse.jgit.transport.CredentialsProvider;
-import org.eclipse.jgit.transport.FilterSpec;
 import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
 
 import java.nio.file.Files;
