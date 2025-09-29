@@ -1,0 +1,85 @@
+# --- Core terms ---
+\bfix(?:es|ed)?\b
+\bvuln(?:erability|erable|erabilities)?\b
+\bpin(?:ned|ning)?\b
+\binject(?:ion|ions|ed|s)?\b
+
+# --- General security ---
+\bsecurity\b
+\bsecure\b
+\bharden(?:ed|ing)?\b
+\bmitigat(?:e|ion|ed|ing)\b
+\bprotect(?:ion|ed|ing)?\b
+\bpatch(?:ed|ing)?\b
+\bhotfix\b
+
+# --- Secrets/credentials ---
+\bsecret(?:s)?\b
+\bcredential(?:s)?\b
+\btoken(?:s)?\b
+\brotate(?:d|ion)?\b
+\brevoke(?:d|s|ing)?\b
+\bexpos(?:e|ed|ure)\b
+\b(leak|leaked|leaking|leaks)\b
+
+# --- Common classes ---
+\bxss\b
+\bcsrf\b
+\bsqli?\b
+\brce\b
+\bssrf\b
+\bpath traversal\b
+
+# --- CVEs and advisories ---
+\bCVE[- ]?\d{4}-\d{3,7}\b
+\bGHSA[-\w]+\b
+\bsecurity[- ]?advisory\b
+
+# --- GitHub Actions / CI-CD specifics ---
+\bpull_request_target\b
+\bpermissions:\b
+\bGITHUB_TOKEN\b
+\bcontents:\s*(read|write|none)\b
+\bid-token:\s*(read|write)\b
+\bworkflow_call\b
+\bworkflow_run\b
+\bset-output\b
+\bsave-state\b
+\buses:\b
+@v\d+(?:\.\d+){0,2}
+@[0-9a-fA-F]{40}
+\bpin(?: to| to sha)\b
+\bunpin(?:ned|ning)?\b
+
+# --- Dependency bumps (security-related) ---
+\bdependabot\b
+\bupgrade\b
+\bbump(?:s|ed|ing)?\b
+\bpkg(?:-)?update\b
+\bchore\(deps\)\b
+\bsecurity update\b
+
+# --- Sanitization/validation ---
+\bsanitiz(?:e|ed|ing|ation)\b
+\bescape(?:d|s|ing)?\b
+\bvalidate(?:d|s|ing|ion)\b
+\binput validation\b
+
+# --- Authorization/permissions ---
+\bauth(?:n|z|entication|orization)?\b
+\bpermission(?:s)?\b
+\brole(?:s)?\b
+\bscope(?:s)?\b
+\bpolicy\b
+
+# --- Common verbs around security changes ---
+\brestrict(?:ed|s|ion|ing)?\b
+\blimit(?:ed|s|ing)?\b
+\bdrop(?:ped)?\b
+\bdeny(?:list|listed|ing)?\b
+\ballow(?:list|listed|ing)?\b
+
+# --- Rollbacks/backports that might hide security work ---
+\bbackport(?:ed|ing)?\b
+\bcherry[- ]?pick(?:ed|ing)?\b
+\brevert(?:ed|ing)?\b
