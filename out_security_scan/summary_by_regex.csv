@@ -1,0 +1,94 @@
+pattern,matches
+ing)?\b,71745
+ed,45630
+\bbump(?:s,44979
+\bdependabot\b,38888
+ed)?\b,25299
+\bfix(?:es,23220
+\bpatch(?:ed,17797
+\bupgrade\b,5196
+ning)?\b,4895
+\bpin(?:ned,4743
+\bsecurity\b,4245
+\brevert(?:ed,2799
+\bpermission(?:s)?\b,2664
+listed,1940
+\bharden(?:ed,1933
+\bharden(?:ing,1933
+\ballow(?:list,1815
+\btokens?\b,1805
+\btoken(?:s)?\b,1805
+\bdrop(?:ped)?\b,1711
+s,1603
+erabilities)?\b,1378
+\bvuln(?:erability,1378
+erable,1378
+\bsecret(?:s)?\b,1305
+"@v\d+(?:\.\d+){0,2}",1202
+orization)?\b,894
+entication,894
+\bauth(?:n,894
+z,894
+\bcredential(?:s)?\b,759
+\blimit(?:ed,707
+\bbackport(?:ed,633
+ion,436
+\brestrict(?:ed,332
+\bscope(?:s)?\b,301
+\binject(?:ion,292
+\bset-output\b,285
+\bpolicy\b,263
+\bcherry[- ]?pick(?:ed,256
+\bGITHUB_TOKEN\b,250
+to sha)\b,235
+\bpin(?: to,235
+\bpull_request_target\b,213
+\bprotect(?:ion,210
+\brole(?:s)?\b,201
+ing,196
+\bvalidate(?:d,171
+ion)\b,171
+ure)\b,166
+\bexpos(?:e,166
+s)?\b,146
+ions,146
+@[0-9a-fA-F]{40},138
+\bsecure\b,136
+\bescape(?:d,130
+\bdeny(?:list,125
+\bworkflow_call\b,124
+\bunpin(?:ned,123
+\bsqli?\b,122
+ing)\b,104
+\bmitigat(?:e,104
+\bhotfix\b,98
+\b(leak,89
+leaks)\b,89
+leaked,89
+leaking,89
+age)?\b,88
+\bleak(?:ed,88
+\bsave-state\b,81
+write,72
+\bcontents:\s*(read,72
+none)\b,72
+\bworkflow_run\b,71
+"\bcve[- ]?\d{4}-\d{3,7}\b",54
+"\bCVE[- ]?\d{4}-\d{3,7}\b",54
+\brevoke(?:d,29
+\bsha[- ]?pin(?:ned,29
+ation)\b,25
+\bsanitiz(?:e,25
+\brotate(?:d,23
+ion)?\b,23
+\bGHSA[-\w]+\b,15
+\binput validation\b,10
+\bpermissions:\b,10
+write)\b,9
+\bid-token:\s*(read,9
+\bcsrf\b,7
+\bsecurity update\b,5
+\bpath traversal\b,2
+\brce\b,2
+\bsecurity[- ]?advisory\b,1
+\bxss\b,1
