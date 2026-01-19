@@ -1,0 +1,7 @@
+{
+  "sha" : "59bf60c30c8450451d9d1e36ec30a5b67e787607",
+  "date" : "2020-11-26T05:04:04Z",
+  "message" : "Revert \"Add support for continuous integration workflow on contributions from forked repos\"\n\nThis reverts commit bfc4c600fb7e68f2d358ecb6c7fd096d30b2d430.\n",
+  "content_hash" : "5d5c2d3410a477ac0606e9a340227b39b2a61281",
+  "raw_snapshot_relpath" : "raw\\aws\\amazon-chime-sdk-js\\.github\\workflows\\continuous-integration.yml\\59bf60c30c8450451d9d1e36ec30a5b67e787607.yml"
+}

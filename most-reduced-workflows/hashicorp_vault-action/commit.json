@@ -1,0 +1,7 @@
+{
+  "sha" : "a87a71c289ece3608eeb0699bef226d978ce38e8",
+  "date" : "2023-06-08T14:43:08Z",
+  "message" : "ensure we run the build for all branches (#463)\n\n* ensure we run the build for all branches\r\n\r\n* remove pull_request_target since push is sufficient\r\n\r\n* remove github.ref for checkouts",
+  "content_hash" : "0c6836838227033bce9565087e14f12f57818ddc",
+  "raw_snapshot_relpath" : "raw\\hashicorp\\vault-action\\.github\\workflows\\build.yml\\a87a71c289ece3608eeb0699bef226d978ce38e8.yml"
+}

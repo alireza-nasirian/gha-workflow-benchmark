@@ -1,0 +1,106 @@
+--- .github/workflows/continuous-integration.yml@bfc4c600fb7e68f2d358ecb6c7fd096d30b2d430
++++ .github/workflows/continuous-integration.yml@59bf60c30c8450451d9d1e36ec30a5b67e787607
+@@ -4,7 +4,7 @@
+ name: CI Workflow
+ 
+ on:
+-  pull_request_target:
++  pull_request:
+     branches:
+       - master
+       - release-1.x
+@@ -25,8 +25,9 @@
+       uses: actions/checkout@v2
+       with:
+         fetch-depth: 0
+-        ref: ${{github.event.pull_request.head.ref}}
+-        repository: ${{github.event.pull_request.head.repo.full_name}}
++        # TODO: Enable with pull_request_target to allow for forked repos to run our github actions
++        # ref: ${{github.event.pull_request.head.ref}}
++        # repository: ${{github.event.pull_request.head.repo.full_name}}
+     - name: Using Node.js 12.x
+       uses: actions/setup-node@v1
+       with:
+@@ -66,8 +67,9 @@
+         uses: actions/checkout@v2
+         with:
+           fetch-depth: 0
+-          ref: ${{github.event.pull_request.head.ref}}
+-          repository: ${{github.event.pull_request.head.repo.full_name}}
++          # TODO: Enable with pull_request_target to allow for forked repos to run our github actions
++          # ref: ${{github.event.pull_request.head.ref}}
++          # repository: ${{github.event.pull_request.head.repo.full_name}}
+       - name: Setup Node.js - 12.x
+         uses: actions/setup-node@v1
+         with:
+@@ -110,8 +112,9 @@
+         uses: actions/checkout@v2
+         with:
+           fetch-depth: 0
+-          ref: ${{github.event.pull_request.head.ref}}
+-          repository: ${{github.event.pull_request.head.repo.full_name}}
++          # TODO: Enable with pull_request_target to allow for forked repos to run our github actions
++          # ref: ${{github.event.pull_request.head.ref}}
++          # repository: ${{github.event.pull_request.head.repo.full_name}}
+       - name: Setup Node.js - 12.x
+         uses: actions/setup-node@v1
+         with:
+@@ -153,8 +156,9 @@
+         uses: actions/checkout@v2
+         with:
+           fetch-depth: 0
+-          ref: ${{github.event.pull_request.head.ref}}
+-          repository: ${{github.event.pull_request.head.repo.full_name}}
++          # TODO: Enable with pull_request_target to allow for forked repos to run our github actions
++          # ref: ${{github.event.pull_request.head.ref}}
++          # repository: ${{github.event.pull_request.head.repo.full_name}}
+       - name: Setup Node.js - 12.x
+         uses: actions/setup-node@v1
+         with:
+@@ -196,8 +200,8 @@
+         uses: actions/checkout@v2
+         with:
+           fetch-depth: 0
+-          ref: ${{github.event.pull_request.head.ref}}
+-          repository: ${{github.event.pull_request.head.repo.full_name}}
++          # ref: ${{github.event.pull_request.head.ref}}
++          # repository: ${{github.event.pull_request.head.repo.full_name}}
+       - name: Setup Node.js - 12.x
+         uses: actions/setup-node@v1
+         with:
+@@ -240,8 +244,9 @@
+         uses: actions/checkout@v2
+         with:
+           fetch-depth: 0
+-          ref: ${{github.event.pull_request.head.ref}}
+-          repository: ${{github.event.pull_request.head.repo.full_name}}
++          # TODO: Enable with pull_request_target to allow for forked repos to run our github actions
++          # ref: ${{github.event.pull_request.head.ref}}
++          # repository: ${{github.event.pull_request.head.repo.full_name}}
+       - name: Setup Node.js - 12.x
+         uses: actions/setup-node@v1
+         with:
+@@ -284,8 +289,9 @@
+         uses: actions/checkout@v2
+         with:
+           fetch-depth: 0
+-          ref: ${{github.event.pull_request.head.ref}}
+-          repository: ${{github.event.pull_request.head.repo.full_name}}
++          # TODO: Enable with pull_request_target to allow for forked repos to run our github actions
++          # ref: ${{github.event.pull_request.head.ref}}
++          # repository: ${{github.event.pull_request.head.repo.full_name}}
+       - name: Setup Node.js - 12.x
+         uses: actions/setup-node@v1
+         with:
+@@ -327,8 +333,9 @@
+         uses: actions/checkout@v2
+         with:
+           fetch-depth: 0
+-          ref: ${{github.event.pull_request.head.ref}}
+-          repository: ${{github.event.pull_request.head.repo.full_name}}
++          # TODO: Enable with pull_request_target to allow for forked repos to run our github actions
++          # ref: ${{github.event.pull_request.head.ref}}
++          # repository: ${{github.event.pull_request.head.repo.full_name}}
+       - name: Setup Node.js - 12.x
+         uses: actions/setup-node@v1
+         with:

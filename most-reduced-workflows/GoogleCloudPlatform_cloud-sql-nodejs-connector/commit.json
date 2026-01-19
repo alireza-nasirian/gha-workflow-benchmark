@@ -1,0 +1,7 @@
+{
+  "sha" : "eefa48b50712f539a25460742ad108b1b844186d",
+  "date" : "2024-07-23T16:25:10Z",
+  "message" : "ci: remove pull_request_target trigger (#378)\n\n",
+  "content_hash" : "df3a739bce92234f0e26c14a0cd305ff27e59ab9",
+  "raw_snapshot_relpath" : "raw\\GoogleCloudPlatform\\cloud-sql-nodejs-connector\\.github\\workflows\\tests.yml\\eefa48b50712f539a25460742ad108b1b844186d.yml"
+}

@@ -1,0 +1,20 @@
+--- .github/workflows/build-graphscope-wheels-linux.yml@09dd9992ba361373f324672cd0eea407ae59e720
++++ .github/workflows/build-graphscope-wheels-linux.yml@609c9705c45c97bc08e0d9367453f8fe9b04fa74
+@@ -32,7 +32,7 @@
+ 
+     - name: Setup tmate session
+       if: false
+-      uses: mxschmitt/action-tmate@v2
++      uses: mxschmitt/action-tmate@v3
+ 
+     - name: Build Wheel Package
+       run: |
+@@ -104,7 +104,7 @@
+ 
+     - name: Setup tmate session
+       if: false
+-      uses: mxschmitt/action-tmate@v2
++      uses: mxschmitt/action-tmate@v3
+ 
+     - name: Build Wheel Package
+       run: |

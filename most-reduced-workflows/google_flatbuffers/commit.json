@@ -1,0 +1,6 @@
+{
+  "sha" : "d89f611f6f8cada8211d31ccde456591b886fea0",
+  "date" : "2024-05-29T00:18:00Z",
+  "message" : "Update build.yml to ubuntu-24.04 (#8319)\n\n* Update build.yml to ubuntu-24.04\r\n\r\nApparently g++-13 was removed from the ubuntu-22.04 runners.\r\n\r\nWe also don't have enterprise runners at 24.04 yet, so just use the free ones for now until we get support for those. CI builds might take longer now.\r\n\r\n* Update build.yml\r\n\r\nDowngrade to g++12 and revert change to using normal runners\r\n\r\n* Update build.yml\r\n\r\nGo back to ubuntu-24.04 and update both gcc and clang to their latest versions according to [this](https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2404-Readme.md?plain=1#L16-L20).\r\n\r\n* Update build.yml\r\n\r\nGo back to g++13 for now, as we get some exotic warning in g++14 for newer C++ standards.\r\n\r\n* Update build.yml\r\n\r\nFix the other issues with `macos-latest` going to arm: https://github.com/actions/runner-images/tree/main?tab=readme-ov-file#available-images and that Swift wasn't installed in the ubuntu-24.04 by default.\r\n\r\n* Update build.yml\r\n\r\nDisable Kotlin MacOs CI",
+  "raw_snapshot_relpath" : "raw\\google\\flatbuffers\\.github\\workflows\\build.yml\\d89f611f6f8cada8211d31ccde456591b886fea0.yml"
+}

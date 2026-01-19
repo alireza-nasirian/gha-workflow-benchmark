@@ -1,0 +1,7 @@
+{
+  "sha" : "609c9705c45c97bc08e0d9367453f8fe9b04fa74",
+  "date" : "2024-09-04T06:00:53Z",
+  "message" : "chore: fix several compile errors with downstream repos. (#4196)\n\n",
+  "content_hash" : "1f2dcfc1288db9d86e03b91a75cf7e4b3448b162",
+  "raw_snapshot_relpath" : "raw\\alibaba\\GraphScope\\.github\\workflows\\build-graphscope-wheels-macos.yml\\609c9705c45c97bc08e0d9367453f8fe9b04fa74.yml"
+}
