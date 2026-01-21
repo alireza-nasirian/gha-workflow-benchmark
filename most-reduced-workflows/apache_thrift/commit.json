@@ -1,0 +1,7 @@
+{
+  "sha" : "3dcc0cdeb993c363f14bc6514cff32f9ac5b6ac7",
+  "date" : "2024-01-09T20:58:47Z",
+  "message" : "Revert \"Bump upload/download-artifacts from v3 to v4\"\n\nThis reverts commit 85400668007ea1938c250e01a7c4763ecfef3c71.\n\nhttps://github.com/actions/upload-artifact/issues/478 will impact us.\n",
+  "content_hash" : "0883641addb0d8227ff33299a9db921b0575e03b",
+  "raw_snapshot_relpath" : "raw\\apache\\thrift\\.github\\workflows\\build.yml\\3dcc0cdeb993c363f14bc6514cff32f9ac5b6ac7.yml"
+}
