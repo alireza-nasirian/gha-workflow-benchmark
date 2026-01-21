@@ -1,0 +1,7 @@
+{
+  "sha" : "91690a5b26284ef1a9df6ae3b6b3d8418e7a0abf",
+  "date" : "2024-09-03T07:37:40Z",
+  "message" : "feat: Reorganize install-deps in gsctl (#4154)\n\n- [x] Split the gsctl install-deps commands for flex architecture\r\n- [x] Upgrade to the latest vineyard version \r\n   - [x] Add global config file of vineyard version `V6D_VERSION`\r\n   - [x] Use `V6D_VERSION` to build graphscope images\r\n   - [ ] Use `V6D_VERSION` to build graphscope wheel packages\r\n- [x] Add `OEDestsSize` `IEDestsSize` `IOEDestsSize` interface in `ArrowProjectedFragment`\r\n- [x] CI related\r\n   - [x] Install dependencies by `gsctl install-deps dev-analytical-java` in CI `gae.yml`\r\n   - [x] rm `*dummy.yml` files from `.github/workflows`",
+  "content_hash" : "327484d486f93fbbfcfe21a9cb1efb574d954b7b",
+  "raw_snapshot_relpath" : "raw\\alibaba\\GraphScope\\.github\\workflows\\build-graphscope-dev-images.yml\\91690a5b26284ef1a9df6ae3b6b3d8418e7a0abf.yml"
+}
