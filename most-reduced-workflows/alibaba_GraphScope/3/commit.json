@@ -1,0 +1,7 @@
+{
+  "sha" : "83995e01df026b0bf373b832e6a3da009c4960d7",
+  "date" : "2024-08-14T12:03:38Z",
+  "message" : "fix: Fix CI failure when building manylinux image (#4122)\n\n## What do these changes do?\r\n- Return the error messages Immediately when executing the image building task through `gsctl`\r\n- Support treat `graphlearn` as an option to build `graphscope-client` wheel package\r\n\r\nCo-authored-by: xiaolei.zl <xiaolei.zl@alibaba-inc.com>",
+  "content_hash" : "2d2b3af760b47faa0983080e97f94628bf36f830",
+  "raw_snapshot_relpath" : "raw\\alibaba\\GraphScope\\.github\\workflows\\flex-interactive.yml\\83995e01df026b0bf373b832e6a3da009c4960d7.yml"
+}
