@@ -1,0 +1,7 @@
+{
+  "sha" : "edb4239df483469c5b6b12ad366ad7dce290c1d7",
+  "date" : "2024-12-26T10:29:35Z",
+  "message" : "Refreshing the lib slightly. (#52)\n\n* Refreshing the lib slightly.\r\n\r\n* Update audit check.\r\n\r\n* Default action.\r\n\r\n* Installing openssl\r\n\r\n* Apt-get ?\r\n\r\n* ?\r\n\r\n* okk.\r\n\r\n* Monkey\r\n\r\n* Build ?\r\n\r\n* ?\r\n\r\n* Libatomic.\r\n\r\n* Big endian.\r\n\r\n* Libatomic dev?\r\n\r\n* ..\r\n\r\n* Free threaded fixes ?",
+  "content_hash" : "639bad4b4781c3240b0259ca4c59f2e001c5e4ff",
+  "raw_snapshot_relpath" : "raw\\huggingface\\hf_transfer\\.github\\workflows\\audit.yml\\edb4239df483469c5b6b12ad366ad7dce290c1d7.yml"
+}
