@@ -1,0 +1,10 @@
+--- .github/workflows/ci_static-analysis.yaml@d6d887c3fb9445ff643f6a0dd7d7ebdcae05a8b6
++++ .github/workflows/ci_static-analysis.yaml@7d8508ab90cd2423d1bf2f30a45860887e2a2cf3
+@@ -11,6 +11,6 @@
+   not-grep:
+     runs-on: ubuntu-latest
+     steps:
+-      - uses: actions/checkout@v2
++      - uses: actions/checkout@v4
+       - name: not-grep
+         uses: mattsb42-meta/not-grep@1.0.0
