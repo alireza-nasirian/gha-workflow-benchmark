@@ -126,8 +126,8 @@ public class HistoryGit {
         index.put("workflow_path", workflowPath);
         index.put("nb_commits", commitSummaries.size());
         if (!commitSummaries.isEmpty()) {
-            index.put("last_commit_date", commitSummaries.get(0).get("date"));
-            index.put("first_commit_date", commitSummaries.get(commitSummaries.size() - 1).get("date"));
+            index.put("last_commit_date", commitSummaries.getFirst().get("date"));
+            index.put("first_commit_date", commitSummaries.getLast().get("date"));
         }
         index.put("commits", commitSummaries);
         index.put("collected_at", Instant.now().toString());

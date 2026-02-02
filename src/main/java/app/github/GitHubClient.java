@@ -28,7 +28,7 @@ public class GitHubClient {
                     .formatted(cfg.baseUrl(), org, cfg.perPage(), page);
             try (Response r = http.get(url)) {
                 var arr = om.readTree(r.body().byteStream());
-                if (!arr.isArray() || arr.size() == 0) break;
+                if (!arr.isArray() || arr.isEmpty()) break;
                 arr.forEach(items::add);
             }
             page++;
@@ -55,7 +55,7 @@ public class GitHubClient {
                     .formatted(cfg.baseUrl(), org, repo, encode(path), encode(branch), cfg.perPage(), page);
             try (Response r = http.get(url)) {
                 var arr = om.readTree(r.body().byteStream());
-                if (!arr.isArray() || arr.size() == 0) break;
+                if (!arr.isArray() || arr.isEmpty()) break;
                 arr.forEach(items::add);
             }
             page++;
