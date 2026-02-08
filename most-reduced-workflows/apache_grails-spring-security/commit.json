@@ -1,0 +1,7 @@
+{
+  "sha" : "8786567e45ed96b6ba891b611cf4cae26a79d30f",
+  "date" : "2024-03-28T12:38:31Z",
+  "message" : "fix(build): Update Build and CI (#1005)\n\n- Use version catalogs\r\n- Cleanup and update Github workflows\r\n- Cleanup test apps\r\n- Cleanup unused dependencies\r\n- Update dependencies\r\n- Set correct/minimal dependency configuration scopes\r\n- Remove unused imports\r\n- Move docs dropdown version list to gradle.properties",
+  "content_hash" : "5172bd7af7e794fb6ef30c3bbf22f0332abf891e",
+  "raw_snapshot_relpath" : "raw\\apache\\grails-spring-security\\.github\\workflows\\release.yml\\8786567e45ed96b6ba891b611cf4cae26a79d30f.yml"
+}
